@@ -1,8 +1,10 @@
-public static class ArraysTester {
+public static class ArraysTester
+{
     /// <summary>
     /// Entry point for the tests
     /// </summary>
-    public static void Run() {
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive)
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         double[] multiples = MultiplesOf(7, 5);
@@ -39,9 +41,17 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //double array of results that will hold the dynamic array
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            //each array place will be filled in by each number multiplied by the next for the length listed
+            result[i] = number * (i + 1);
+        }
+        //returning the array
+        return result;
     }
-    
+
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
     /// <c>&lt;List&gt;{1, 2, 3, 4, 5, 6, 7, 8, 9}</c> and an amount is 3 then the list returned should be 
@@ -52,10 +62,25 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
+
         // TODO Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // rotation here
+        int rotationIndex = data.Count - amount;
+
+        // new array to hold values
+        int[] rotatedElements = new int[amount];
+
+        // making new copy
+        data.CopyTo(rotationIndex, rotatedElements, 0, amount);
+
+        // removing the index/amount
+        data.RemoveRange(rotationIndex, amount);
+
+        // instert at beginning
+        data.InsertRange(0, rotatedElements);
     }
 }
