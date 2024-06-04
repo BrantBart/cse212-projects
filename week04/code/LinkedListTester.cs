@@ -1,5 +1,7 @@
-public static class LinkedListTester {
-    public static void Run() {
+public static class LinkedListTester
+{
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         var ll = new LinkedList();

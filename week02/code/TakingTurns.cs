@@ -1,5 +1,7 @@
-﻿public static class TakingTurns {
-    public static void Test() {
+﻿public static class TakingTurns
+{
+    public static void Test()
+    {
         // TODO Problem 1 - Run test cases and fix the code to match requirements
         // Test Cases
 
@@ -15,7 +17,7 @@
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: Add should be used instead of Insert. That is messing up the order.
 
         Console.WriteLine("---------");
 
@@ -28,7 +30,8 @@
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
         players.AddPerson("Sue", 3);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
@@ -38,7 +41,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: None found after first fix
 
         Console.WriteLine("---------");
 
@@ -52,7 +55,8 @@
         players.AddPerson("Tim", 0);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
@@ -60,7 +64,7 @@
 
         Console.WriteLine("---------");
 
-         // Test 4
+        // Test 4
         // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
         // Run 10 times.
         // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
@@ -69,7 +73,8 @@
         players.AddPerson("Tim", -3);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
