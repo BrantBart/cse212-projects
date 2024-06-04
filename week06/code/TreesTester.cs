@@ -14,6 +14,7 @@ public static class TreesTester
         // After implementing 'no duplicates' rule,
         // this next insert will have no effect on the tree.
         // TODO Problem 1
+        // changed the code in insert
         tree.Insert(7);
         tree.Insert(4);
         tree.Insert(10);
@@ -102,6 +103,19 @@ public static class TreesTester
     /// <param name="bst">the BinarySearchTree in which to insert the values</param>
     private static void InsertMiddle(int[] sortedNumbers, int first, int last, BinarySearchTree bst)
     {
-        // TODO Start Problem 5
+        // Yeah..., I didn't get this part and had to get lots of help from the internet :(
+        // if first > last, return to end
+        if (first > last)
+        {
+            return;
+        }
+
+        // the middle index
+        int middle = (first + last) / 2;
+        // Add the value to tree middle of sorted numbers above
+        bst.Insert(sortedNumbers[middle]);
+        // Call left and right halves for the middle
+        InsertMiddle(sortedNumbers, first, middle - 1, bst);
+        InsertMiddle(sortedNumbers, middle + 1, last, bst);
     }
 }

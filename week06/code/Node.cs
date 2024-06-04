@@ -31,13 +31,38 @@ public class Node
 
     public bool Contains(int value)
     {
-        // TODO Start Problem 2
-        return false;
+        if (value == Data)
+        {
+            return true; // Found the value
+        }
+        else if (value < Data && Left != null)
+        {
+            // Search in the left subtree
+            return Left.Contains(value);
+        }
+        else if (value > Data && Right != null)
+        {
+            // Search in the right subtree
+            return Right.Contains(value);
+        }
+
+        return false; // Value not found
     }
 
-    public int GetHeight()
+public int GetHeight()
+{
+    // if null height = 0
+    if (this == null)
     {
-        // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        return 0;
     }
+
+    // calculate left and right branch height starting from the leaves
+    int leftHeight = (Left != null) ? Left.GetHeight() : 0;
+    int rightHeight = (Right != null) ? Right.GetHeight() : 0;
+
+    // max heights and current node (missed that before)
+    return Math.Max(leftHeight, rightHeight) + 1;
+}
+
 }

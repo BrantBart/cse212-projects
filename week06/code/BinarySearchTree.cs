@@ -9,14 +9,19 @@ public class BinarySearchTree : IEnumerable<int>
     /// </summary>
     public void Insert(int value)
     {
-        // Create new node
-        Node newNode = new Node(value);
-        // If the list is empty, then point both head and tail to the new node.
+        // If the tree is empty, create the root node
         if (_root is null)
-            _root = newNode;
-        // If the list is not empty, then only head will be affected.
+        {
+            _root = new Node(value);
+        }
         else
-            _root.Insert(value);
+        {
+            // Check if the value already exists in the tree
+            if (!Contains(value))
+            {
+                _root.Insert(value);
+            }
+        }
     }
 
     /// <summary>
@@ -76,7 +81,18 @@ public class BinarySearchTree : IEnumerable<int>
 
     private void TraverseBackward(Node? node, List<int> values)
     {
-        // TODO Problem 3
+        // Return if node is null
+        if (node == null)
+        {
+            return;
+        }
+
+        // Traverse the right subtree first (largest values)
+        TraverseBackward(node.Right, values);
+        // Add the current node's data
+        values.Add(node.Data);
+        // Traverse the left subtree (smaller values)
+        TraverseBackward(node.Left, values);
     }
 
     /// <summary>
