@@ -278,8 +278,20 @@ public static class RecursionTester
     /// </summary>
     public static void WildcardBinary(string pattern)
     {
-        // TODO Start Problem 4
+        int index = pattern.IndexOf('*');
+        if (index == -1)
+        {
+            // write the first pattern
+            Console.WriteLine(pattern);
+        }
+        else
+        {
+            // Recursive here, 
+            WildcardBinary(pattern.Substring(0, index) + '0' + pattern.Substring(index + 1));
+            WildcardBinary(pattern.Substring(0, index) + '1' + pattern.Substring(index + 1));
+        }
     }
+
 
     /// <summary>
     /// Use recursion to Print all paths that start at (0,0) and end at the
@@ -292,11 +304,28 @@ public static class RecursionTester
         if (currPath == null)
             currPath = new List<ValueTuple<int, int>>();
 
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
+        currPath.Add((x, y)); // Use this syntax to add to the current path
 
-        // TODO Start Problem 5
-        // ADD CODE HERE
+        // Check if the current position is the end of the maze
+        if (maze.IsEnd(x, y))
+        {
+            // Print the path
+            Console.WriteLine(string.Join(" -> ", currPath.Select(p => $"({p.Item1},{p.Item2})")));
+            return; // Exit the recursion when is at end
+        }
 
-        // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        // Check for next move from available (wow this was confusing!)
+        // Right
+        if (maze.IsValidMove(currPath, x + 1, y))
+            SolveMaze(maze, x + 1, y, new List<ValueTuple<int, int>>(currPath));
+        // Down
+        if (maze.IsValidMove(currPath, x, y + 1))
+            SolveMaze(maze, x, y + 1, new List<ValueTuple<int, int>>(currPath));
+        // Left
+        if (maze.IsValidMove(currPath, x - 1, y))
+            SolveMaze(maze, x - 1, y, new List<ValueTuple<int, int>>(currPath));
+        // up
+        if (maze.IsValidMove(currPath, x, y - 1))
+            SolveMaze(maze, x, y - 1, new List<ValueTuple<int, int>>(currPath));
     }
 }
